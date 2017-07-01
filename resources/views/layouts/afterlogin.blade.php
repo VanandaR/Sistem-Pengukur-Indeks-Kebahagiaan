@@ -22,8 +22,15 @@
 
     <!-- altair admin -->
     <link rel="stylesheet" href="/assets/css/main.min.css" media="all">
-
-
+    <!-- chartjs-->
+    <script src="/assets/js/chartjs.js"></script>
+    <!-- additional styles for plugins -->
+    <!-- metrics graphics (charts) -->
+    <link rel="stylesheet" href="/bower_components/metrics-graphics/dist/metricsgraphics.css">
+    <!-- c3.js (charts) -->
+    <link rel="stylesheet" href="/bower_components/c3js-chart/c3.min.css">
+    <!-- chartist -->
+    <link rel="stylesheet" href="/bower_components/chartist/dist/chartist.min.css">
 
     <!-- matchMedia polyfill for testing media queries in JS -->
     <!--[if lte IE 9]>
@@ -47,54 +54,6 @@
             <a href="#" id="sidebar_secondary_toggle" class="sSwitch sSwitch_right sidebar_secondary_check">
                 <span class="sSwitchIcon"></span>
             </a>
-
-            <div id="menu_top_dropdown" class="uk-float-left uk-hidden-small">
-                <div class="uk-button-dropdown" data-uk-dropdown="{mode:'click'}">
-                    <a href="#" class="top_menu_toggle"><i class="material-icons md-24">&#xE8F0;</i></a>
-                    <div class="uk-dropdown uk-dropdown-width-3">
-                        <div class="uk-grid uk-dropdown-grid" data-uk-grid-margin>
-                            <div class="uk-width-2-3">
-                                <div class="uk-grid uk-grid-width-medium-1-3 uk-margin-top uk-margin-bottom uk-text-center" data-uk-grid-margin>
-                                    <a href="page_mailbox.html">
-                                        <i class="material-icons md-36">&#xE158;</i>
-                                        <span class="uk-text-muted uk-display-block">Data Training</span>
-                                    </a>
-                                    <a href="page_invoices.html">
-                                        <i class="material-icons md-36">&#xE53E;</i>
-                                        <span class="uk-text-muted uk-display-block">Invoices</span>
-                                    </a>
-                                    <a href="page_chat.html">
-                                        <i class="material-icons md-36 md-color-red-600">&#xE0B9;</i>
-                                        <span class="uk-text-muted uk-display-block">Chat</span>
-                                    </a>
-                                    <a href="page_scrum_board.html">
-                                        <i class="material-icons md-36">&#xE85C;</i>
-                                        <span class="uk-text-muted uk-display-block">Scrum Board</span>
-                                    </a>
-                                    <a href="page_snippets.html">
-                                        <i class="material-icons md-36">&#xE86F;</i>
-                                        <span class="uk-text-muted uk-display-block">Snippets</span>
-                                    </a>
-                                    <a href="page_user_profile.html">
-                                        <i class="material-icons md-36">&#xE87C;</i>
-                                        <span class="uk-text-muted uk-display-block">User profile</span>
-                                    </a>
-                                </div>
-                            </div>
-                            <div class="uk-width-1-3">
-                                <ul class="uk-nav uk-nav-dropdown uk-panel">
-                                    <li class="uk-nav-header">Components</li>
-                                    <li><a href="components_accordion.html">Accordions</a></li>
-                                    <li><a href="components_buttons.html">Buttons</a></li>
-                                    <li><a href="components_notifications.html">Notifications</a></li>
-                                    <li><a href="components_sortable.html">Sortable</a></li>
-                                    <li><a href="components_tabs.html">Tabs</a></li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
 
             <div class="uk-navbar-flip">
                 <ul class="uk-navbar-nav user_actions">
@@ -209,8 +168,6 @@
                         <a href="#" class="user_action_image"><img class="md-user-image" src="/assets/img/avatars/avatar_11_tn.png" alt=""/></a>
                         <div class="uk-dropdown uk-dropdown-small">
                             <ul class="uk-nav js-uk-prevent">
-                                <li><a href="page_user_profile.html">My profile</a></li>
-                                <li><a href="page_settings.html">Settings</a></li>
                                 <li><a href="/logout">Logout</a></li>
                             </ul>
                         </div>
@@ -250,7 +207,8 @@
                     <span class="menu_title">Tweet</span>
                 </a>
             </li>
-            <li title="Text Preprocessing">
+            @if(Auth::user()->role_id==1)
+            <li title="Data Training">
                 <a href="#">
                     <span class="menu_icon"><i class="material-icons">&#xE1BD;</i></span>
                     <span class="menu_title">Data Training</span>
@@ -258,10 +216,9 @@
                 <ul>
                     <li><a href="/datatraining/tabel">Tabel</a></li>
                     <li><a href="/datatraining/preprocessing">Text Preprocessing</a></li>
-                    <li><a href="/datatraining/lexicon">Lexicon / Manual</a></li>
                 </ul>
             </li>
-            <li title="Text Preprocessing">
+            <li title="Data Testing">
                 <a href="#">
                     <span class="menu_icon"><i class="material-icons">&#xE1BD;</i></span>
                     <span class="menu_title">Data Testing</span>
@@ -270,6 +227,7 @@
                     <li><a href="/datatesting/tabel">Tabel</a></li>
                     <li><a href="/datatesting/preprocessing">Text Preprocessing</a></li>
                     <li><a href="/datatesting/klasifikasi">Klasifikasi</a></li>
+                    <li><a href="/datatesting/indekskebahagiaan">Indeks Kebahagiaan</a></li>
                 </ul>
             </li>
             <li title="Stopword">
@@ -278,12 +236,45 @@
                     <span class="menu_title">Stopword</span>
                 </a>
             </li>
-            <li title="Stopword">
+
+            <li title="Sentiword">
                 <a href="/sentiword">
                     <span class="menu_icon"><i class="material-icons">&#xE151;</i></span>
                     <span class="menu_title">Sentiword</span>
                 </a>
             </li>
+                <li title="Streaming">
+                    <a href="#">
+                        <span class="menu_icon"><i class="material-icons">&#xE1BD;</i></span>
+                        <span class="menu_title">Streaming</span>
+                    </a>
+                    <ul>
+                        <li><a href="/streaming">Tabel</a></li>
+                        <li><a href="/streaming/visualisasi">Visualisasi</a></li>
+                    </ul>
+                </li>
+            @endif
+
+            @if(Auth::user()->role_id==2)
+                <li title="Data Training">
+                    <a href="/datatraining/tabel">
+                        <span class="menu_icon"><i class="material-icons">&#xE1BD;</i></span>
+                        <span class="menu_title">Data Training</span>
+                    </a>
+                </li>
+                <li title="Data Testing">
+                    <a href="/datatesting/tabel">
+                        <span class="menu_icon"><i class="material-icons">&#xE1BD;</i></span>
+                        <span class="menu_title">Data Testing</span>
+                    </a>
+                </li>
+                <li title="FAQ">
+                    <a href="/FAQ">
+                        <span class="menu_icon"><i class="material-icons">&#xE151;</i></span>
+                        <span class="menu_title">FAQ</span>
+                    </a>
+                </li>
+            @endif
         </ul>
     </div>
 </aside><!-- main sidebar end -->
@@ -330,6 +321,21 @@
 <script src="/assets/js/pages/components_notifications.min.js"></script>
 <!--  mailbox functions -->
 <script src="/assets/js/pages/page_mailbox.min.js"></script>
+
+<!-- ionrangeslider -->
+<script src="/bower_components/ion.rangeslider/js/ion.rangeSlider.min.js"></script>
+
+<!--form advanced-->
+<script src="/assets/js/pages/forms_advanced.min.js"></script>
+
+
+<!-- help -->
+<script src="/assets/js/pages/page_help.min.js"></script>
+
+
+
+
+
 
 <script>
     $(function() {
@@ -404,6 +410,7 @@
                 $switcher_toggle = $('#style_switcher_toggle'),
                 $theme_switcher = $('#theme_switcher'),
                 $mini_sidebar_toggle = $('#style_sidebar_mini'),
+                $boxed_layout_toggle = $('#style_layout_boxed'),
                 $body = $('body');
 
 

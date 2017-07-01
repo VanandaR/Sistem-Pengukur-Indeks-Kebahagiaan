@@ -480,6 +480,12 @@ altair_charts = {
         }, {
             distributeSeries: true
         });
+        new Chartist.Bar('#chartist_distributed_category', {
+            labels: ['XS', 'S', 'M', 'L', 'XL', 'XXL', 'XXXL'],
+            series: [20, 60, 120, 200, 180, 20, 10]
+        }, {
+            distributeSeries: true
+        });
 
         // simple pie chart
         var data = {

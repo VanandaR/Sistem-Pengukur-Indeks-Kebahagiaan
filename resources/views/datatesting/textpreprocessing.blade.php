@@ -13,6 +13,7 @@
                                 <li class="uk-active"><a href="#">Text Preprocessing</a></li>
                                 <li><a href="#">Text Tranformation</a></li>
                                 <li><a href="#">N-Gram</a></li>
+                                <li><a href="#">N-Gram Frequency</a></li>
                             </ul>
                             <ul id="tabs_1" class="uk-switcher uk-margin">
                                 <li>
@@ -35,9 +36,7 @@
                                                 <td>{{$i}}</td>
                                                 <td>{{$dt->tweet}}</td>
                                                 <td>
-                                                    @foreach($hasilpreprocessing[$i-1] as $token)
-                                                        {{$token}}
-                                                    @endforeach
+                                                    {{$hasilpreprocessing[$i-1]}}
                                                 </td>
                                             </tr>
                                         @endforeach
@@ -61,13 +60,12 @@
                                         @php $i=0; @endphp
 
                                         @foreach($datatraining as $dt)
+
                                             <tr>
                                                 @php $i++;@endphp
                                                 <td>{{$i}}</td>
                                                 <td>
-                                                    @foreach($hasilpreprocessing[$i-1] as $token)
-                                                        {{$token}}
-                                                    @endforeach
+                                                    {{$hasilpreprocessing[$i-1]}}
                                                 </td>
                                                 <td>
                                                     {{$hasilstemming[$i-1]}}
@@ -108,6 +106,36 @@
                                                 </td>
                                                 <td>
                                                 </td>
+                                            </tr>
+                                        @endforeach
+                                        </tbody>
+                                    </table>
+                                </li>
+                                <li>
+                                    <table class="uk-table" cellspacing="0" width="100%">
+                                        <thead>
+                                        <tr>
+                                            <th width="10%">No</th>
+                                            <th>Hasil Stopword Removal</th>
+                                            <th>N-Gram</th>
+                                        </tr>
+                                        </thead>
+
+
+                                        <tbody>
+                                        @php $i=0; @endphp
+
+                                        @php $i=0; @endphp
+
+                                        @foreach($hasilfrequencyngram as $fngram)
+                                            <tr>
+                                                @php $i++;@endphp
+                                                <td>{{$i}}</td>
+                                                @foreach($fngram as $fngram2)
+                                                    <td>
+                                                        {{$fngram2}}
+                                                    </td>
+                                                @endforeach
                                             </tr>
                                         @endforeach
                                         </tbody>

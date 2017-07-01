@@ -11,7 +11,7 @@
 |
 */
 
-Route::get('/', function () {
+Route::get('/', function (){
     return view('landingpage');
 });
 
@@ -32,18 +32,30 @@ Route::post('/sentiword/insert', 'SentiwordController@insert');
 Route::post('sentiword/update', 'SentiwordController@update');
 Route::get('/sentiword/delete/{id}', ['uses'=> 'SentiwordController@delete']);
 
-Route::get('/datatraining/tabel', 'TextMiningController@datatraining');
-Route::get('/datatraining/lexicon', 'TextMiningController@datatraininglexicon');
-Route::get('/datatraining/delete/{id}', ['uses'=> 'TextMiningController@deletedatatraining']);
-Route::get('/datatraining/preprocessing', 'TextMiningController@textminingdatatraining');
+Route::get('/datatraining/tabel', 'DataTrainingController@index');
+//Route::get('/datatraining/manual', 'DataTrainingController@manual');
+Route::get('/datatraining/delete/{id}', ['uses'=> 'DataTrainingController@delete']);
+Route::get('/datatraining/edit/{id}', ['uses'=> 'DataTrainingController@edit']);
+Route::post('/datatraining/update', 'DataTrainingController@update');
+Route::get('/datatraining/preprocessing', 'DataTrainingController@textmining');
+//Route::post('/datatraining/manual/label', 'DataTrainingController@labelling');
 
-Route::get('/datatesting/tabel', 'TextMiningController@datatesting');
-Route::get('/datatesting/lexicon', 'TextMiningController@datatestinglexicon');
-Route::get('/datatesting/delete/{id}', ['uses'=> 'TextMiningController@deletedatatesting']);
-Route::get('/datatesting/preprocessing', 'TextMiningController@textminingdatatesting');
+Route::get('/datatesting/tabel', 'DataTestingController@index');
+Route::get('/datatesting/delete/{id}', ['uses'=> 'DataTestingController@delete']);
+Route::get('/datatesting/preprocessing', 'DataTestingController@textmining');
+Route::post('/datatesting/update', 'DataTestingController@update');
+Route::get('/datatesting/edit/{id}', ['uses'=> 'DataTestingController@edit']);
+//Route::get('/datatesting/manual', 'DataTestingController@manual');
+//Route::post('/datatesting/manual/label', 'DataTestingController@labelling');
+Route::get('/datatesting/klasifikasi', 'DataTestingController@klasifikasi');
+Route::get('/datatesting/indekskebahagiaan', 'DataTestingController@indekskebahagiaan');
 
-Route::post('/klasifikasi/update', 'TextMiningController@manuallabelling');
-Route::get('/datatesting/klasifikasi', 'TextMiningController@klasifikasitesting');
+Route::get('/streaming', 'StreamingController@index');
+Route::get('/streaming/visualisasi', 'StreamingController@visualisasi');
+
+Route::post('/ahlibahasaclassification', 'TweetController@ahlibahasaclassification');
+
+Route::get('/FAQ', 'FAQController@index');
 
 Route::get('/logout', function()
 {

@@ -11,15 +11,15 @@
     <link rel="icon" type="image/png" href="assets/img/favicon-16x16.png" sizes="16x16">
     <link rel="icon" type="image/png" href="assets/img/favicon-32x32.png" sizes="32x32">
 
-    <title>Altair Admin v2.2.0 - Login Page</title>
+    <title>vanandarahadika.com - login</title>
 
     <link href='http://fonts.googleapis.com/css?family=Roboto:300,400,500' rel='stylesheet' type='text/css'>
 
     <!-- uikit -->
-    <link rel="stylesheet" href="bower_components/uikit/css/uikit.almost-flat.min.css"/>
+    <link rel="stylesheet" href="/bower_components/uikit/css/uikit.almost-flat.min.css"/>
 
     <!-- altair admin login page -->
-    <link rel="stylesheet" href="assets/css/login_page.min.css" />
+    <link rel="stylesheet" href="/assets/css/login_page.min.css" />
 
 </head>
 <body class="login_page">
@@ -34,20 +34,18 @@
                     {{ csrf_field() }}
                     <div class="uk-form-row {{ $errors->has('email') ? ' has-error' : '' }}">
                         <label for="login_email">Email</label>
-                        <input id="login_email" type="email" class="md-input" name="email" value="{{ old('email') }}" required autofocus>
+                        <input id="login_email" type="email" class="md-input {{$errors->has('email') ? 'md-input-danger' : '' }}" name="email" value="{{ old('email') }}" required autofocus>
                         @if ($errors->has('email'))
-                            <span class="help-block">
-                                        <strong>{{ $errors->first('email') }}</strong>
+                            <span class="help-block wrong_reason">{{ $errors->first('email') }}
                                     </span>
                         @endif
                     </div>
                     <div class="uk-form-row {{ $errors->has('password') ? ' has-error' : '' }}">
 
                         <label for="login_password">Password</label>
-                        <input id="login_password" type="password" class="md-input" name="password" required>
+                        <input id="login_password" type="password" class="md-input {{$errors->has('password') ? 'md-input-danger' : '' }}" name="password" required>
                         @if ($errors->has('password'))
-                            <span class="help-block">
-                                        <strong>{{ $errors->first('password') }}</strong>
+                            <span class="help-block wrong_reason">{{ $errors->first('password') }}
                                     </span>
                         @endif
                     </div>
@@ -95,63 +93,27 @@
                     </div>
                 </form>
             </div>
-            <div class="md-card-content large-padding" id="register_form" style="display: none">
-                <button type="buttorn" class="uk-position-top-right uk-close uk-margin-right uk-margin-top back_to_login"></button>
-                <h2 class="heading_a uk-margin-medium-bottom">Create an account</h2>
-                <form class="form-horizontal" role="form" method="POST" action="{{ route('register') }}">
-                    {{ csrf_field() }}
-                    <div class="uk-form-row{{ $errors->has('name') ? ' has-error' : '' }}">
-                        <label for="register_username">Username</label>
-                        <input id="name" type="text" class="md-input" name="name" value="{{ old('name') }}" required autofocus>
-                        @if ($errors->has('name'))
-                            <span class="help-block">
-                                        <strong>{{ $errors->first('name') }}</strong>
-                                    </span>
-                        @endif
-                    </div>
-                    <div class="uk-form-row{{ $errors->has('email') ? ' has-error' : '' }}">
-                        <label for="register_email">E-mail</label>
-                        <input id="email" type="email" class="md-input" name="email" value="{{ old('email') }}" required>
-                        @if ($errors->has('email'))
-                            <span class="help-block">
-                                        <strong>{{ $errors->first('email') }}</strong>
-                                    </span>
-                        @endif
-                    </div>
-                    <div class="uk-form-row{{ $errors->has('password') ? ' has-error' : '' }}">
-                        <label for="register_password">Password</label>
-                        <input id="password" type="password" class="md-input" name="password" required>
-
-                        @if ($errors->has('password'))
-                            <span class="help-block">
-                                        <strong>{{ $errors->first('password') }}</strong>
-                                    </span>
-                        @endif
-                    </div>
-                    <div class="uk-form-row">
-                        <label for="register_password_repeat">Konfirmasi Password</label>
-                        <input id="password-confirm" type="password" class="md-input" name="password_confirmation" required>
-
-                    </div>
-
-                    <div class="uk-margin-medium-top">
-                        <button type="submit" class="md-btn md-btn-primary md-btn-block md-btn-large">Sign Up</button>
-                    </div>
-                </form>
-            </div>
         </div>
         <div class="uk-margin-top uk-text-center">
-            <a href="#" id="signup_form_show">Create an account</a>
+            <a href="/register">Buat akun</a>
         </div>
     </div>
-
+    <style>
+        .wrong_reason{
+            margin-top: 0px;
+            font-size: 12px;
+            position: absolute;
+            color: #e53935;
+            transition: opacity .2s ease-in;
+        }
+    </style>
     <!-- common functions -->
-    <script src="assets/js/common.min.js"></script>
+    <script src="/assets/js/common.min.js"></script>
     <!-- altair core functions -->
-    <script src="assets/js/altair_admin_common.min.js"></script>
+    <script src="/assets/js/altair_admin_common.min.js"></script>
 
     <!-- altair login page functions -->
-    <script src="assets/js/pages/login.min.js"></script>
+    <script src="/assets/js/pages/login.min.js"></script>
 
 </body>
 </html>

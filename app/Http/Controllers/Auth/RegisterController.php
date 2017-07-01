@@ -66,6 +66,14 @@ class RegisterController extends Controller
             'name' => $data['name'],
             'email' => $data['email'],
             'password' => bcrypt($data['password']),
+            'role_id'=>2
         ]);
+    }
+    public function showRegistrationForm()
+    {
+        if (view()->exists('auth.authenticate')) {
+            return view('auth.authenticate');
+        }
+        return view('auth.register2');
     }
 }

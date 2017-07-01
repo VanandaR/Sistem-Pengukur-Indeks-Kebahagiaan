@@ -22,7 +22,7 @@ class TwitterOAuth {
   /* Set timeout default. */
   public $timeout = 30;
   /* Set connect timeout. */
-  public $connecttimeout = 30; 
+  public $connecttimeout = 30;
   /* Verify SSL Cert. */
   public $ssl_verifypeer = FALSE;
   /* Respons format. */
@@ -64,6 +64,7 @@ class TwitterOAuth {
     } else {
       $this->token = NULL;
     }
+      set_time_limit(180);
   }
 
 

@@ -10,6 +10,6 @@ class Classification extends Model
 
     public function tweet()
     {
-        return $this->hasOne('App\Tweet');
+        return $this->hasOne('App\Tweet')->select(array('status'));
     }
 }

@@ -7,11 +7,14 @@
     "require": {
         "php": ">=5.6.4",
         "abraham/twitteroauth": "^0.7.2",
+        "facebook/graph-sdk": "^5.5",
         "iannsp/ngram": "^1.0",
         "laravel/framework": "5.4.*",
         "laravel/tinker": "~1.0",
         "php-ai/php-ml": "^0.4.1",
-        "sastrawi/sastrawi": "1"
+        "sastrawi/sastrawi": "1",
+        "sixty-nine/php-cloud-lib": "dev-master",
+        "spatie/laravel-twitter-streaming-api": "^1.0"
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",

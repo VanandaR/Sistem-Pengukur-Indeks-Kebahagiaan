@@ -13,7 +13,8 @@
                             <th>Username</th>
                             <th>Tweet</th>
                             <th>Post Time</th>
-
+                            <th>Manual Sentimen</th>
+                            <th>Manual Kategori</th>
                             <th width="30%" class="filter-false remove sorter-false uk-text-center">Action</th>
                         </tr>
                         </thead>
@@ -29,31 +30,13 @@
                                 <td>{{$dt->user}}</td>
                                 <td>{{$dt->tweet}}</td>
                                 <td>{{$dt->post_time}}</td>
+                                <td>{{$dt->classification->manual_sentimen_label}}</td>
+                                <td>{{$dt->classification->manual_category_label}}</td>
                                 <td class="uk-text-center">
-                                    <a class="ts_remove_row" href="#modal_edit_stopword{{$dt->id}}" data-uk-modal="{center:true'}"><i class="md-icon material-icons">edit</i></a>
+                                    <a href="/datatesting/edit/{{$dt->id}}"><i class="md-icon material-icons">edit</i></a>
                                     <a class="ts_remove_row" onclick="UIkit.modal.confirm('Apakah kamu yakin?', function(){location.href='/datatraining/delete/{{$dt->id}}' });"><i class="md-icon material-icons">&#xE872;</i></a>
                                 </td>
                             </tr>
-                            <div class="uk-modal" id="modal_edit_stopword{{$dt->id}}">
-                                <div class="uk-modal-dialog">
-                                    <div class="uk-modal-header">
-                                        <h3 class="uk-modal-title">Edit Stopword</h3>
-                                    </div>
-                                    <form method="post" action="/stopword/update">
-                                        {{ csrf_field() }}
-                                        <input type="hidden" value="<?php echo $dt->id;?>" name="id">
-                                        <div class="uk-form-row">
-                                            <div class="md-input-wrapper md-input-filled">
-                                                <label>Stopword</label>
-                                                <input type="text" value="<?php echo $dt->text;?>" name="stopword" class="md-input">
-                                            </div>
-                                        </div>
-                                        <div class="uk-modal-footer uk-text-right">
-                                            <button type="button" class="md-btn md-btn-flat uk-modal-close">Close</button><button type="submit" class="md-btn md-btn-flat md-btn-flat-primary">Save</button>
-                                        </div>
-                                    </form>
-                                </div>
-                            </div>
                         @endforeach
                         </tbody>
                     </table>

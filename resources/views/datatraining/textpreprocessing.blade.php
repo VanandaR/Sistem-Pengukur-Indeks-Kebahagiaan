@@ -36,9 +36,7 @@
                                                 <td>{{$i}}</td>
                                                 <td>{{$dt->tweet}}</td>
                                                 <td>
-                                                    @foreach($hasilpreprocessing[$i-1] as $token)
-                                                        {{$token}}
-                                                    @endforeach
+                                                    {{$hasilpreprocessing[$i-1]}}
                                                 </td>
                                             </tr>
                                         @endforeach
@@ -66,9 +64,7 @@
                                                 @php $i++;@endphp
                                                 <td>{{$i}}</td>
                                                 <td>
-                                                    @foreach($hasilpreprocessing[$i-1] as $token)
-                                                        {{$token}}
-                                                    @endforeach
+                                                    {{$hasilpreprocessing[$i-1]}}
                                                 </td>
                                                 <td>
                                                         {{$hasilstemming[$i-1]}}

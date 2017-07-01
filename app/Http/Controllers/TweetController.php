@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Classification;
 use App\Tweet;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\Redirect;
 
@@ -17,7 +18,12 @@ class TweetController extends Controller
     }
     public function index()
     {
-       return view('crawling.tweet');
+        if(Auth::user()->role_id==2){
+            return view('crawling.tweet2');
+        }else{
+            return view('crawling.tweet');
+        }
+
     }
 
     public function adddata(){
@@ -45,6 +51,25 @@ class TweetController extends Controller
             }
         }
         return Redirect::to('/tweet');
+    }
+    public function ahlibahasaclassification(){
+
+        $tweet=Tweet::create([
+            'user'=>Input::get('username'),
+            'tweet'=>Input::get('tweet'),
+            'post_time'=>Input::get('post_time'),
+            'status'=>Input::get('jenis')
+        ]);
+
+        $lexicon=Classification::create([
+            'id_tweet'=>$tweet->id,
+            'lexicon_pos_score'=>0,
+            'lexicon_neg_score'=>0,
+            'manual_sentimen_label'=>Input::get('manual_sentimen_label'),
+            'manual_category_label'=>Input::get('manual_category_label'),
+            'nb_pos_probability'=>0,
+            'nb_neg_probability'=>0
+        ]);
     }
 
 }

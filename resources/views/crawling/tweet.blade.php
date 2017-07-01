@@ -2,26 +2,56 @@
 @section('konten')
     <?php
     require_once 'twitteroauth/twitteroauth.php';
-    define('CONSUMER_KEY', '0Y9KZFaZaUI67BQ5RjBcPPhSN'); //isikan dengan CONSUMER_KEY anda
-    define('CONSUMER_SECRET', 'ey1LZH8xYegJ0h9EIB0m2nsD18shVcJHZtxlNfcHKdzTR5tbyK'); //isikan dengan CONSUMER_KEY anda
-    define('ACCESS_TOKEN', '3014251646-J0LadQ2pyEAs0xLwnhwxu5nv27gZL8of0NAPzGB'); //isikan dengan CONSUMER_KEY anda
-    define('ACCESS_TOKEN_SECRET', 'R06seEsYZdaPy2LkpHz54JLhLxBx0snXg2AdpPuaBipdY'); //isikan dengan CONSUMER_KEY anda
+    define('CONSUMER_KEY', '2m6gNr9B6XY9btj8JyWw9n85Y'); //isikan dengan CONSUMER_KEY anda
+    define('CONSUMER_SECRET', 'zH3oKZ1SyidyY5jyJKTBOWry1J7W2zZEABOXQwrqsHh5od5nVa'); //isikan dengan CONSUMER_KEY anda
+    define('ACCESS_TOKEN', '3014251646-MakM1YrlHcQWab2arBvmB3lYoQfkZU7l4pnscX0'); //isikan dengan CONSUMER_KEY anda
+    define('ACCESS_TOKEN_SECRET', 'sYT1x5fRXfhs6ZUJECQ8ctkgsrHBkqXd1ae4jfwZYsmNi'); //isikan dengan CONSUMER_KEY anda
 
-    function search($query)
+    function search()
     {
+        $limit = (isset($_GET['jumlahtweet']))?$_GET['jumlahtweet']:100;
+        $max_id = null;
+        $count=100;
+        $contents = array();
         $connection = new TwitterOAuth(CONSUMER_KEY, CONSUMER_SECRET, ACCESS_TOKEN, ACCESS_TOKEN_SECRET);
-        return $connection->get('search/tweets', $query);
+        for ($i = 0; $i < $limit; $i += $count) {
+
+            $content = $connection->get('search/tweets', array("q" => (isset($_GET['query']))?$_GET['query']:"jember","count"=>$limit,'max_id'=>$max_id));
+            $limit=$limit-$count;
+            $contents[] = $content;
+            // this indicates the last index of $content array
+            $max_id=($content->statuses[count($content->statuses)-1]->id_str);
+//            if (count($content)) {
+//                $last_tweet = end($content);
+//
+//                $max_id = $content[count($content) - 1]->id_str;
+//            } else $max_id = null;
+        }
+        return $contents;
     }
 
-
-    $query = array(
-            "q" => (isset($_GET['query']))?$_GET['query']:"",
-            "count"=>(isset($_GET['jumlahtweet']))?$_GET['jumlahtweet']:"0",
-            "geocode"=>"-8.1845,113.6681,20km"
-    );
-
-    $results = search($query);
-//    dd($results);
+    $results = search();
+//            $res=array();
+//            for($i=0;$i<count($results);$i++){
+//                $res[]=$results[$i];
+//            }
+//            dd($res);
+//    function search($query)
+//    {
+//        $connection = new TwitterOAuth(CONSUMER_KEY, CONSUMER_SECRET, ACCESS_TOKEN, ACCESS_TOKEN_SECRET);
+//        return $connection->get('search/tweets', $query);
+//    }
+//
+//
+//    $query = array(
+//            "q" => (isset($_GET['query']))?$_GET['query']:"",
+//            "count"=>(isset($_GET['jumlahtweet']))?$_GET['jumlahtweet']:"0",
+//            "geocode"=>"-8.1845,113.6681,20km"
+//    );
+//
+//    $results = search($query);
+//            dd($results);
+    //    dd($results);
     ?>
 
 
@@ -39,16 +69,23 @@
                                         {{ csrf_field() }}
                                         <div class="uk-form-row">
                                             <div class="uk-grid">
-                                                <div class="uk-width-medium-4-6">
+                                                <div class="uk-width-medium-1-1">
                                                     <label>Query</label>
                                                     <input type="text" id="query" name="query" class="md-input" value="{{(isset($_GET['query']))?$_GET['query']:""}}" />
                                                 </div>
-                                                <div class="uk-width-medium-1-6">
+                                            </div>
+                                        </div>
+                                        <div class="uk-form-row">
+                                            <div class="uk-grid">
+                                                <div class="uk-width-medium-1-1">
                                                     <label>Jumlah Tweet</label>
                                                     <input type="text" id="jumlahtweet" name="jumlahtweet" class="md-input" value="{{(isset($_GET['jumlahtweet']))?$_GET['jumlahtweet']:"0"}}"/>
                                                 </div>
-                                                <div class="uk-width-medium-1-6 uk-text-center">
-
+                                            </div>
+                                        </div>
+                                        <div class="uk-form-row">
+                                            <div class="uk-grid">
+                                                <div class="uk-width-medium-1-1 uk-text-center">
                                                     <button type="submit" id="search" class="md-btn md-btn-primary uk-width-medium-1-1 uk-margin-small-top">Search</button>
                                                 </div>
                                             </div>
@@ -82,6 +119,7 @@
                                 <table class="uk-table uk-table-hover">
                                     <thead>
                                     <tr>
+                                        <th>No</th>
                                         <th><input type="checkbox" name="mailbox_select_all" id="mailbox_select_all" data-md-icheck />
                                             </th>
                                         <th>User</th>
@@ -90,20 +128,25 @@
                                     </tr>
                                     </thead>
                                     <tbody>
-                                    @foreach($results->statuses as $result)
+                                    @php $i=1; @endphp
+                                    @for($j=0;$j<count($results);$j++)
+                                    @foreach($results[$j]->statuses as $result)
 
                                         <?php
 //                                        dd($result->created_at);
                                         $date = new DateTime($result->created_at);?>
                                         <tr>
+                                            <td>{{$i}}</td>
                                             <td><div class="md-card-list-item-select">
                                                     <input type="checkbox" name="tweet[]" value="{{$result->text}};{{$result->user->screen_name}};{{$date->format("Y-m-d h:m:s")}}" id="ceklist" data-md-icheck />
                                                 </div></td>
                                             <td>{{$result->user->screen_name}}</td>
                                             <td>{{$result->text}}</td>
-                                            <td>{{$date->format("d M Y")}}</td>
+                                            <td>{{$date->format("d M Y h:i:s")}}</td>
+                                            @php $i++;@endphp
                                         </tr>
                                     @endforeach
+                                        @endfor
                                     </tbody>
                                 </table>
                             </div>
