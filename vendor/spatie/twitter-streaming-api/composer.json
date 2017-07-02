@@ -1,0 +1,41 @@
+{
+    "name": "spatie/twitter-streaming-api",
+    "description": "Easily work with the Twitter Streaming API",
+    "keywords": [
+        "spatie",
+        "twitter-streaming-api"
+    ],
+    "homepage": "https://github.com/spatie/twitter-streaming-api",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Freek Van der Herten",
+            "email": "freek@spatie.be",
+            "homepage": "https://spatie.be",
+            "role": "Developer"
+        }
+    ],
+    "require": {
+        "php": "^7.0",
+        "fennb/phirehose": "^1.0"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "5.*"
+    },
+    "autoload": {
+        "psr-4": {
+            "Spatie\\TwitterStreamingApi\\": "src"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Spatie\\TwitterStreamingApi\\Test\\": "tests"
+        }
+    },
+    "scripts": {
+        "test": "vendor/bin/phpunit"
+    },
+    "config": {
+        "sort-packages": true
+    }
+}

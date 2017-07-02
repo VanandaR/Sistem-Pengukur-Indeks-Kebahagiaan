@@ -30,7 +30,8 @@ class DataTrainingController extends TextMiningController
         $datatraining=Tweet::where('status',1)->get();
         $hasilpreprocessing=$this->preprocessing($datatraining);
         $hasilstemming=$this->stemming($datatraining);
-        $hasilstopwordremoval=$this->stopwordremoval($hasilstemming);
+        $hasilbukancorpus=$this->cekCorpus($hasilstemming);
+        $hasilstopwordremoval=$this->stopwordremoval($hasilbukancorpus);
         $hasilngram=$this->ngram($hasilstopwordremoval);
 
         $b=array();
@@ -41,7 +42,7 @@ class DataTrainingController extends TextMiningController
 
         return view('datatraining.textpreprocessing',['datatraining'=>$datatraining,'hasilpreprocessing'=>$hasilpreprocessing,
             'hasilstemming'=>$hasilstemming,'hasilstopwordremoval'=>$hasilstopwordremoval,'hasilngram'=>$hasilngram,
-            'hasilfrequencyngram'=>$hasilfrequencyngram]);
+            'hasilbukancorpus'=>$hasilbukancorpus,'hasilfrequencyngram'=>$hasilfrequencyngram]);
     }
     public function update(Request $request){
         Classification::where('id_tweet', $request->id)->update([

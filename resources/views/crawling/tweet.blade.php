@@ -16,10 +16,15 @@
         $connection = new TwitterOAuth(CONSUMER_KEY, CONSUMER_SECRET, ACCESS_TOKEN, ACCESS_TOKEN_SECRET);
         for ($i = 0; $i < $limit; $i += $count) {
 
-            $content = $connection->get('search/tweets', array("q" => (isset($_GET['query']))?$_GET['query']:"jember","count"=>$limit,'max_id'=>$max_id));
-            $limit=$limit-$count;
+            $content = $connection->get('search/tweets', array(
+                    "q" => (isset($_GET['query']))?$_GET['query']:"jember",
+                    "count"=>$limit,
+                    'max_id'=>$max_id,
+                    'lang'=>'id'
+                    ));
             $contents[] = $content;
             // this indicates the last index of $content array
+            if(count($content->statuses)>0)
             $max_id=($content->statuses[count($content->statuses)-1]->id_str);
 //            if (count($content)) {
 //                $last_tweet = end($content);

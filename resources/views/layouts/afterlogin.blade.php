@@ -237,10 +237,10 @@
                 </a>
             </li>
 
-            <li title="Sentiword">
-                <a href="/sentiword">
+            <li title="Ontology">
+                <a href="/ontology">
                     <span class="menu_icon"><i class="material-icons">&#xE151;</i></span>
-                    <span class="menu_title">Sentiword</span>
+                    <span class="menu_title">Ontologi</span>
                 </a>
             </li>
                 <li title="Streaming">
@@ -252,6 +252,12 @@
                         <li><a href="/streaming">Tabel</a></li>
                         <li><a href="/streaming/visualisasi">Visualisasi</a></li>
                     </ul>
+                </li>
+                <li title="User">
+                    <a href="/user">
+                        <span class="menu_icon"><i class="material-icons">&#xE151;</i></span>
+                        <span class="menu_title">User</span>
+                    </a>
                 </li>
             @endif
 

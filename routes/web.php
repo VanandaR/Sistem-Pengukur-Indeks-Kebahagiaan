@@ -27,10 +27,11 @@ Route::post('/stopword/insert', 'StopwordController@insert');
 Route::post('stopword/update', 'StopwordController@update');
 Route::get('/stopword/delete/{id}', ['uses'=> 'StopwordController@delete']);
 
-Route::get('/sentiword', 'SentiwordController@index');
-Route::post('/sentiword/insert', 'SentiwordController@insert');
-Route::post('sentiword/update', 'SentiwordController@update');
-Route::get('/sentiword/delete/{id}', ['uses'=> 'SentiwordController@delete']);
+Route::get('/ontology', 'OntologyController@index');
+Route::post('/ontology/insert', 'OntologyController@insert');
+Route::post('/ontology/update', 'OntologyController@update');
+Route::get('/ontology/delete/{id}', ['uses'=> 'OntologyController@delete']);
+
 
 Route::get('/datatraining/tabel', 'DataTrainingController@index');
 //Route::get('/datatraining/manual', 'DataTrainingController@manual');
@@ -56,6 +57,8 @@ Route::get('/streaming/visualisasi', 'StreamingController@visualisasi');
 Route::post('/ahlibahasaclassification', 'TweetController@ahlibahasaclassification');
 
 Route::get('/FAQ', 'FAQController@index');
+
+Route::get('/user', 'UserController@index');
 
 Route::get('/logout', function()
 {

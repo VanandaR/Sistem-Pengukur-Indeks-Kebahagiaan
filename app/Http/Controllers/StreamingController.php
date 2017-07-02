@@ -13,15 +13,12 @@ class StreamingController extends Controller
     }
     public function index()
     {
-        TwitterStreamingApi::publicStream()
-            ->whenHears('jember', function(array $tweet) {
-                echo "{$tweet['user']['screen_name']} tweeted {$tweet['text']}";
-            })
-            ->whenHears('obama', function(array $tweet) {
-                echo "{$tweet['user']['screen_name']} tweeted {$tweet['text']}";
-            })
-            ->startListening();
-        die;
+//        TwitterStreamingApi::publicStream()
+//            ->whenHears('dosis', function(array $tweet) {
+//                echo "{$tweet['user']['screen_name']} tweeted {$tweet['text']}";
+//            })
+//            ->startListening();
+//        die;
         return view('streaming.index');
     }
     public function visualisasi(){

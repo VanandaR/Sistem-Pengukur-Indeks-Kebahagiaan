@@ -20,6 +20,7 @@
             $limit=$limit-$count;
             $contents[] = $content;
             // this indicates the last index of $content array
+            if(count($content->statuses)>0)
             $max_id=($content->statuses[count($content->statuses)-1]->id_str);
 //            if (count($content)) {
 //                $last_tweet = end($content);

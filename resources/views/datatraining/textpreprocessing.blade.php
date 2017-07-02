@@ -51,6 +51,7 @@
                                             <th width="10%">No</th>
                                             <th>Hasil Preprocessing</th>
                                             <th>Stemming</th>
+                                            <th>Kata Dasar Removal</th>
                                             <th>Stopword Removal</th>
                                         </tr>
                                         </thead>
@@ -68,6 +69,9 @@
                                                 </td>
                                                 <td>
                                                         {{$hasilstemming[$i-1]}}
+                                                </td>
+                                                <td>
+                                                    {{$hasilbukancorpus[$i-1]}}
                                                 </td>
                                                 <td>
                                                     {{$hasilstopwordremoval[$i-1]}}

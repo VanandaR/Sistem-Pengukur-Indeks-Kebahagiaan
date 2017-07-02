@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\Redirect;
 use Phpml\Metric\ClassificationReport;
 
 use Phpml\Classification\NaiveBayes;
+use Sastrawi\Dictionary\ArrayDictionary;
 
 class DataTestingController extends TextMiningController
 {
@@ -27,18 +28,20 @@ class DataTestingController extends TextMiningController
             'manual_sentimen_label'=>$request->manual_sentimen_label,
             'manual_category_label'=>$request->manual_category_label
         ]);
-        return Redirect::to('/datatraining/tabel');
+
+        return Redirect::to('/datatesting/tabel');
     }
     public function edit($id){
-        $datatraining=Tweet::find($id);
-        return view('datatraining.edit',['datatraining'=>$datatraining]);
+        $datatesting=Tweet::find($id);
+        return view('datatesting.edit',['datatesting'=>$datatesting]);
     }
     public function textmining()
     {
         $datatraining=Tweet::where('status',2)->get();
         $hasilpreprocessing=$this->preprocessing($datatraining);
         $hasilstemming=$this->stemming($datatraining);
-        $hasilstopwordremoval=$this->stopwordremoval($hasilstemming);
+        $hasilbukancorpus=$this->cekCorpus($hasilstemming);
+        $hasilstopwordremoval=$this->stopwordremoval($hasilbukancorpus);
         $hasilngram=$this->ngram($hasilstopwordremoval);
         $b=array();
         foreach ($hasilngram as $hn){
@@ -48,7 +51,7 @@ class DataTestingController extends TextMiningController
 
         return view('datatesting.textpreprocessing',['datatraining'=>$datatraining,'hasilpreprocessing'=>$hasilpreprocessing,
             'hasilstemming'=>$hasilstemming,'hasilstopwordremoval'=>$hasilstopwordremoval,'hasilngram'=>$hasilngram,
-            'hasilfrequencyngram'=>$hasilfrequencyngram]);
+            'hasilbukancorpus'=>$hasilbukancorpus,'hasilfrequencyngram'=>$hasilfrequencyngram]);
     }
     public function labelling(Request $request){
 
@@ -202,4 +205,5 @@ class DataTestingController extends TextMiningController
         $datatesting=Tweet::where('status',2)->get();
         return view('datatesting.manual',['datatesting'=>$datatesting]);
     }
+
 }

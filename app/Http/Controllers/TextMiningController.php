@@ -7,7 +7,7 @@ use App\Tweet;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
 use Phpml\Metric\ClassificationReport;
-
+use Sastrawi\Dictionary\ArrayDictionary;
 use Phpml\Classification\NaiveBayes;
 
 class TextMiningController extends Controller
@@ -160,6 +160,37 @@ class TextMiningController extends Controller
 //            }
 //            return $ret;
 //        }
+    }
+    public function getKataDasar()
+    {
+        $dictionaryFile=public_path().'\kata-dasar.txt';
+        return explode("\n", file_get_contents($dictionaryFile));
+    }
+    public function removeBukanKataDasar($text)
+    {
+
+        $kataDasar = $this->getKataDasar();
+
+        $dictionary = new ArrayDictionary($kataDasar);
+
+        $words = explode(' ', $text);
+
+        foreach ($words as $i => $word) {
+            if (!$dictionary->contains($word)) {
+                unset($words[$i]);
+            }
+        }
+
+        return implode(' ', $words);
+    }
+    public function cekCorpus($datatraining){
+        $output=array();
+        $i=0;
+        foreach ($datatraining as $dt){
+            $output[$i]=$this->removeBukanKataDasar($dt);
+            $i++;
+        }
+        return $output;
     }
 
 
