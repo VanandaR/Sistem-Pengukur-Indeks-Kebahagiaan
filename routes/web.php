@@ -11,9 +11,7 @@
 |
 */
 
-Route::get('/', function (){
-    return view('landingpage');
-});
+Route::get('/', 'LandingPageController@index');
 
 Auth::routes();
 
@@ -52,13 +50,18 @@ Route::get('/datatesting/klasifikasi', 'DataTestingController@klasifikasi');
 Route::get('/datatesting/indekskebahagiaan', 'DataTestingController@indekskebahagiaan');
 
 Route::get('/streaming', 'StreamingController@index');
-Route::get('/streaming/visualisasi', 'StreamingController@visualisasi');
+Route::get('/streaming/klasifikasi', 'StreamingController@klasifikasihariini');
+Route::post('/streaming/save', 'StreamingController@saveindex');
+Route::get('/streaming/delete/{id}', ['uses'=> 'StreamingController@delete']);
 
 Route::post('/ahlibahasaclassification', 'TweetController@ahlibahasaclassification');
 
 Route::get('/FAQ', 'FAQController@index');
 
 Route::get('/user', 'UserController@index');
+Route::get('/user/delete/{id}', ['uses'=> 'UserController@delete']);
+Route::get('/user/edit/{id}', ['uses'=> 'UserController@edit']);
+Route::post('/user/update', 'UserController@update');
 
 Route::get('/logout', function()
 {

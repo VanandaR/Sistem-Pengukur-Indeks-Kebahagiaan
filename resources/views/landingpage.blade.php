@@ -9,7 +9,7 @@
     <link rel="icon" type="image/png" href="/assets/img/favicon-32x32.png" sizes="32x32">
 
     <title>vanandarahadika.com - home</title>
-
+    <script src="/assets/js/chartjs.js"></script>
     <!-- uikit -->
     <link rel="stylesheet" href="/bower_components/uikit/css/uikit.almost-flat.min.css" media="all">
 
@@ -48,6 +48,11 @@
                     <li>
                         <a href="#sect-features">
                             Kelebihan
+                        </a>
+                    </li>
+                    <li class="">
+                        <a href="#sect-gallery">
+                            Indeks Kebahagiaan
                         </a>
                     </li>
                 </ul>
@@ -126,6 +131,19 @@
         </div>
     </div>
 </section>
+<section class="section section_gallery md-bg-blue-grey-50" id="sect-gallery">
+    <div class="uk-container uk-container-center uk-grid uk-grid-medium uk-grid-width-large-1-1" data-uk-grid-margin>
+        <div class="uk-width-large-3-5 uk-container-center uk-text-center">
+            <h2 class="heading_b">
+                Statistik Indeks Kebahagiaan
+                <span class="sub-heading">Data Indeks Kebahagiaan Per Hari</span>
+            </h2>
+        </div>
+        <div class="md-card">
+            <canvas id="indeks_kebahagiaan"></canvas>
+        </div>
+    </div>
+</section>
 <section class="section section_dark md-bg-blue-grey-700">
     <div class="uk-container uk-container-center">
         <div class="uk-grid" data-uk-grid-margin>
@@ -141,7 +159,36 @@
         </div>
     </div>
 </section>
+<script>
+    var sentimenData = {
+        labels : [
+            @foreach($happiness as $ik)
+                    '{{$ik->date}}',
+            @endforeach
+        ],
+        datasets : [
+            {
+                data : [
+                    @foreach($happiness as $ik)
+                            '{{$ik->index}}',
+                    @endforeach
+                ]
+            }
+        ]
 
+    }
+    var s=new Chart(document.getElementById("indeks_kebahagiaan"), {
+        type: 'line',
+        data: sentimenData,
+        options: {
+            legend: { display: false },
+            title: {
+                display: true,
+                text: 'Indeks Kebahagiaan'
+            }
+        }
+    });
+</script>
 <!-- google web fonts -->
 <script>
     WebFontConfig = {

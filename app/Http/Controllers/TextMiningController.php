@@ -107,7 +107,11 @@ class TextMiningController extends Controller
         $i=0;
         foreach ($datatraining as $dt){
             $output[$i]=$stopword->remove($dt);
-            $i++;
+            if($output[$i]==''){
+                $output[$i]='   ';
+            }
+
+                $i++;
         }
         return $output;
     }
@@ -163,7 +167,7 @@ class TextMiningController extends Controller
     }
     public function getKataDasar()
     {
-        $dictionaryFile=public_path().'\kata-dasar.txt';
+        $dictionaryFile=public_path().'/kata-dasar.txt';
         return explode("\n", file_get_contents($dictionaryFile));
     }
     public function removeBukanKataDasar($text)

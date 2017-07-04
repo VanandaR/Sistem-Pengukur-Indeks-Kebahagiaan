@@ -7,29 +7,7 @@
     define('ACCESS_TOKEN', '3014251646-MakM1YrlHcQWab2arBvmB3lYoQfkZU7l4pnscX0'); //isikan dengan CONSUMER_KEY anda
     define('ACCESS_TOKEN_SECRET', 'sYT1x5fRXfhs6ZUJECQ8ctkgsrHBkqXd1ae4jfwZYsmNi'); //isikan dengan CONSUMER_KEY anda
 
-    function search()
-    {
-        $limit = (isset($_GET['jumlahtweet']))?$_GET['jumlahtweet']:100;
-        $max_id = null;
-        $count=100;
-        $contents = array();
-        $connection = new TwitterOAuth(CONSUMER_KEY, CONSUMER_SECRET, ACCESS_TOKEN, ACCESS_TOKEN_SECRET);
-        for ($i = 0; $i < $limit; $i += $count) {
 
-            $content = $connection->get('search/tweets', array("q" => (isset($_GET['query']))?$_GET['query']:"jember","count"=>$limit,'max_id'=>$max_id));
-            $limit=$limit-$count;
-            $contents[] = $content;
-            // this indicates the last index of $content array
-            if(count($content->statuses)>0)
-            $max_id=($content->statuses[count($content->statuses)-1]->id_str);
-//            if (count($content)) {
-//                $last_tweet = end($content);
-//
-//                $max_id = $content[count($content) - 1]->id_str;
-//            } else $max_id = null;
-        }
-        return $contents;
-    }
 
     $results = search();
     //            $res=array();

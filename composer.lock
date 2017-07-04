@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "edd8d20a2eaa6ad47920313532d264ed",
+    "content-hash": "ee497a97e7936ce4b2d4e9698afe460e",
     "packages": [
         {
             "name": "abraham/twitteroauth",
@@ -1970,55 +1970,6 @@
             ],
             "description": "Advanced data types for PHP",
             "time": "2017-04-13T11:16:13+00:00"
-        },
-        {
-            "name": "spatie/laravel-twitter-streaming-api",
-            "version": "1.0.1",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/spatie/laravel-twitter-streaming-api.git",
-                "reference": "c0b483667056e030cd5cbe3f626a7d9f8bfb630e"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/spatie/laravel-twitter-streaming-api/zipball/c0b483667056e030cd5cbe3f626a7d9f8bfb630e",
-                "reference": "c0b483667056e030cd5cbe3f626a7d9f8bfb630e",
-                "shasum": ""
-            },
-            "require": {
-                "illuminate/support": "^5.3",
-                "php": "^7.0",
-                "spatie/twitter-streaming-api": "^1.0.0"
-            },
-            "require-dev": {
-                "orchestra/testbench": "^3.3",
-                "phpunit/phpunit": "5.*"
-            },
-            "type": "library",
-            "autoload": {
-                "psr-4": {
-                    "Spatie\\LaravelTwitterStreamingApi\\": "src"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Freek Van der Herten",
-                    "email": "freek@spatie.be",
-                    "homepage": "https://spatie.be",
-                    "role": "Developer"
-                }
-            ],
-            "description": "Easily work with the Twitter Streaming API in a Laravel app",
-            "homepage": "https://github.com/spatie/laravel-twitter-streaming-api",
-            "keywords": [
-                "laravel-twitter-streaming-api",
-                "spatie"
-            ],
-            "time": "2017-03-13T10:55:51+00:00"
         },
         {
             "name": "spatie/twitter-streaming-api",
@@ -4427,6 +4378,55 @@
             "description": "Library that helps with managing the version number of Git-hosted PHP projects",
             "homepage": "https://github.com/sebastianbergmann/version",
             "time": "2016-10-03T07:35:21+00:00"
+        },
+        {
+            "name": "spatie/laravel-twitter-streaming-api",
+            "version": "1.0.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/spatie/laravel-twitter-streaming-api.git",
+                "reference": "c0b483667056e030cd5cbe3f626a7d9f8bfb630e"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/spatie/laravel-twitter-streaming-api/zipball/c0b483667056e030cd5cbe3f626a7d9f8bfb630e",
+                "reference": "c0b483667056e030cd5cbe3f626a7d9f8bfb630e",
+                "shasum": ""
+            },
+            "require": {
+                "illuminate/support": "^5.3",
+                "php": "^7.0",
+                "spatie/twitter-streaming-api": "^1.0.0"
+            },
+            "require-dev": {
+                "orchestra/testbench": "^3.3",
+                "phpunit/phpunit": "5.*"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Spatie\\LaravelTwitterStreamingApi\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Freek Van der Herten",
+                    "email": "freek@spatie.be",
+                    "homepage": "https://spatie.be",
+                    "role": "Developer"
+                }
+            ],
+            "description": "Easily work with the Twitter Streaming API in a Laravel app",
+            "homepage": "https://github.com/spatie/laravel-twitter-streaming-api",
+            "keywords": [
+                "laravel-twitter-streaming-api",
+                "spatie"
+            ],
+            "time": "2017-03-13T10:55:51+00:00"
         },
         {
             "name": "symfony/yaml",

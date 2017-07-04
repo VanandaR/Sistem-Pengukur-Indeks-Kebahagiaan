@@ -1,5 +1,5 @@
 @extends('layouts.afterlogin')
-@section('judul','Stopword')
+@section('judul','User')
 @section('konten')
     <div id="page_content">
         <div id="page_content_inner">
@@ -29,9 +29,8 @@
                                 <td>{{$u->email}}</td>
                                 <td>{{$u->role->nama}}</td>
                                 <td class="uk-text-center">
-                                    <a class="ts_remove_row" href="#modal_edit_stopword{{$u->id}}" data-uk-modal="{center:true'}"><i class="md-icon material-icons">edit</i></a>
-                                    <a type="hidden" name="delete_stopword" href="/stopword/delete/{{$u->id}}"></a>
-                                    <a class="ts_remove_row" onclick="UIkit.modal.confirm('Apakah kamu yakin?', function(){location.href='/stopword/delete/{{$u->id}}' });"><i class="md-icon material-icons">&#xE872;</i></a>
+                                    <a href="/user/edit/{{$u->id}}"><i class="md-icon material-icons">edit</i></a>
+                                    <a class="ts_remove_row" onclick="UIkit.modal.confirm('Apakah kamu yakin?', function(){location.href='/user/delete/{{$u->id}}' });"><i class="md-icon material-icons">&#xE872;</i></a>
                                 </td>
                             </tr>
 

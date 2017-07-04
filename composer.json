@@ -14,7 +14,7 @@
         "php-ai/php-ml": "^0.4.1",
         "sastrawi/sastrawi": "1",
         "sixty-nine/php-cloud-lib": "dev-master",
-        "spatie/laravel-twitter-streaming-api": "^1.0"
+        "spatie/twitter-streaming-api": "^1.2"
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",

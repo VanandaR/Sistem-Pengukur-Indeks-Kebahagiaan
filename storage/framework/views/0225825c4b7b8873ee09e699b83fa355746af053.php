@@ -1,4 +1,4 @@
-<?php $__env->startSection('judul','Stopword'); ?>
+<?php $__env->startSection('judul','User'); ?>
 <?php $__env->startSection('konten'); ?>
     <div id="page_content">
         <div id="page_content_inner">
@@ -28,9 +28,8 @@
                                 <td><?php echo e($u->email); ?></td>
                                 <td><?php echo e($u->role->nama); ?></td>
                                 <td class="uk-text-center">
-                                    <a class="ts_remove_row" href="#modal_edit_stopword<?php echo e($u->id); ?>" data-uk-modal="{center:true'}"><i class="md-icon material-icons">edit</i></a>
-                                    <a type="hidden" name="delete_stopword" href="/stopword/delete/<?php echo e($u->id); ?>"></a>
-                                    <a class="ts_remove_row" onclick="UIkit.modal.confirm('Apakah kamu yakin?', function(){location.href='/stopword/delete/<?php echo e($u->id); ?>' });"><i class="md-icon material-icons">&#xE872;</i></a>
+                                    <a href="/user/edit/<?php echo e($u->id); ?>"><i class="md-icon material-icons">edit</i></a>
+                                    <a class="ts_remove_row" onclick="UIkit.modal.confirm('Apakah kamu yakin?', function(){location.href='/user/delete/<?php echo e($u->id); ?>' });"><i class="md-icon material-icons">&#xE872;</i></a>
                                 </td>
                             </tr>
 

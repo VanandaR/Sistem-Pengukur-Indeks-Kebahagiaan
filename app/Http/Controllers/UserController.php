@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Role;
 use App\User;
+use Illuminate\Support\Facades\Redirect;
 use Illuminate\Http\Request;
 
 class UserController extends Controller
@@ -17,16 +19,18 @@ class UserController extends Controller
         return Redirect::to('/datatraining/tabel');
     }
     public function update(Request $request){
-        User::where('id_user', $request->id)->update([
-            'manual_sentimen_label'=>$request->manual_sentimen_label,
-            'manual_category_label'=>$request->manual_category_label
+        User::where('id', $request->id)->update([
+            'name'=>$request->username,
+            'email'=>$request->email,
+            'role_id'=>$request->role,
         ]);
 
-        return Redirect::to('/user/tabel');
+        return Redirect::to('/user');
     }
     public function edit($id){
         $user=User::find($id);
-        return view('user.edit',['user'=>$user]);
+        $role=Role::all();
+        return view('user.edit',['user'=>$user,'role'=>$role]);
     }
     public function insert(Request $request)
     {

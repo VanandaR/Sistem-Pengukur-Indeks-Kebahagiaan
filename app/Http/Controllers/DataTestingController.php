@@ -78,8 +78,10 @@ class DataTestingController extends TextMiningController
             $manualkategoritesting[$l]=$dtesting->classification->manual_category_label;
             $l++;
         }
+
         $hasilstemmingtraining=$this->stemming($datatraining);
-        $hasilstopwordremovaltraining=$this->stopwordremoval($hasilstemmingtraining);
+        $hasilbukancorpustraining=$this->cekCorpus($hasilstemmingtraining);
+        $hasilstopwordremovaltraining=$this->stopwordremoval($hasilbukancorpustraining);
         $hasilngramtraining=$this->ngram($hasilstopwordremovaltraining);
         $b=array();
         $i=0;
@@ -100,8 +102,11 @@ class DataTestingController extends TextMiningController
 
         $datatesting=Tweet::where('status',2)->get();
         $hasilstemmingtesting=$this->stemming($datatesting);
-        $hasilstopwordremovaltesting=$this->stopwordremoval($hasilstemmingtesting);
+        $hasilbukancorpustesting=$this->cekCorpus($hasilstemmingtesting);
+        $hasilstopwordremovaltesting=$this->stopwordremoval($hasilbukancorpustesting);
+
         $hasilngramtesting=$this->ngram($hasilstopwordremovaltesting);
+
         $i=0;
 //        $positif=0;
 //        $negatif=0;
