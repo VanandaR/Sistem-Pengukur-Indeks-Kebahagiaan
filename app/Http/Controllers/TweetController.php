@@ -23,11 +23,7 @@ class TweetController extends Controller
     public function index()
     {
         $tweet=$this->search();
-//        if(Auth::user()->role_id==2){
-//            return view('crawling.tweet2',['tweet'=>$tweet]);
-//        }else{
-            return view('crawling.tweet',['tweet'=>$tweet]);
-//        }
+        return view('crawling.tweet',['tweet'=>$tweet]);
 
     }
     function search()
@@ -40,20 +36,15 @@ class TweetController extends Controller
         for ($i = 0; $i < $limit; $i += $count) {
 
             $content = $connection->get('search/tweets', array(
-                "q" => (isset($_GET['query']))?$_GET['query']:"jember",
+                "q" => (isset($_GET['query']))?$_GET['query']." AND -filter:retweets AND -filter:replies" :"jember AND -filter:retweets AND -filter:replies",
                 "count"=>$limit,
                 'max_id'=>$max_id,
                 'lang'=>'id'
             ));
             $contents[] = $content;
-            // this indicates the last index of $content array
             if(count($content->statuses)>0)
                 $max_id=($content->statuses[count($content->statuses)-1]->id_str);
-//            if (count($content)) {
-//                $last_tweet = end($content);
-//
-//                $max_id = $content[count($content) - 1]->id_str;
-//            } else $max_id = null;
+
         }
         return $contents;
     }

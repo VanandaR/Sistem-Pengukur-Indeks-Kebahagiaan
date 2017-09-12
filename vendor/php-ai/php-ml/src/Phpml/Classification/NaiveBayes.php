@@ -16,8 +16,10 @@ class NaiveBayes implements Classifier
     const CONTINUOS    = 1;
     const NOMINAL    = 2;
     const EPSILON = 1e-10;
-
+    private $jumlah=0;
+//    private $jumlah=0;
     /**
+     *
      * @var array
      */
     private $std = [];
@@ -72,6 +74,7 @@ class NaiveBayes implements Classifier
         $this->labels = array_keys($labelCounts);
         foreach ($this->labels as $label) {
             $samples = $this->getSamplesByLabel($label);
+
             $this->p[$label] = count($samples) / $this->sampleCount;
             $this->calculateStatistics($label, $samples);
         }
@@ -93,19 +96,23 @@ class NaiveBayes implements Classifier
             // Get the values of nth column in the samples array
             // Mean::arithmetic is called twice, can be optimized
             $values = array_column($samples, $i);
+
             $numValues = count($values);
+            $this->jumlah=$numValues;
+//            $this->jumlah=$numValues;
             // if the values contain non-numeric data,
             // then it should be treated as nominal/categorical/discrete column
 //            dd($values);
             if ($values !== array_filter($values, 'is_numeric')) {
                 $this->dataType[$label][$i] = self::NOMINAL;
                 $this->discreteProb[$label][$i] = array_count_values($values);
+
+
                 $db = &$this->discreteProb[$label][$i];
 
+
                 $db = array_map(function ($el) use ($numValues) {
-
                     return $el / $numValues;
-
                 }, $db);
             } else {
                 $this->mean[$label][$i] = Mean::arithmetic($values);
@@ -132,7 +139,7 @@ class NaiveBayes implements Classifier
                 $this->discreteProb[$label][$feature][$value] == 0) {
                 return self::EPSILON;
             }
-
+            //echo $label.":".$this->discreteProb[$label][$feature][$value]."<br>";
 
             return $this->discreteProb[$label][$feature][$value];
         }
@@ -179,26 +186,36 @@ class NaiveBayes implements Classifier
         // Then compare probability for each class to determine which label is most likely
         $predictions = [];
         $hasil=array();
+        $i=0;
+
         foreach ($this->labels as $label) {
+
             $p = $this->p[$label];
+//            echo $label." : ".$p;
             //echo "<br>".$p." => ";
 //            dd($p);
             for ($i=0; $i<$this->featureCount; $i++) {
+
                 $Plf = $this->sampleProbability($sample, $i, $label);
-               // echo $Plf." - ";
-                $p *= $Plf;//$p adalah banyaknya labelling
-                //echo $p."<br>";
+                $Plf+=(1/$this->jumlah);
+//                echo $Plf." - ";
+//                echo $p." - ";
+//                $p *= $Plf;//$p adalah banyaknya labelling
+//
+//                echo $p."<br>";
             }
-            $predictions[$label] = $p;
+            $predictions[$label] = $Plf;
+
             $hasil[$label]=$predictions[$label];
-            //echo "=======================<br>";
-            //echo $hasil[$label];
-            //echo "<br>=======================";
+//
+//            echo "=======================<br>";
+//            echo $hasil[$label];
+//            echo "<br>=======================";
         }
         arsort($predictions, SORT_NUMERIC);
         reset($predictions);
         //dd($predictions);
 //        return key($predictions);
-                return $hasil;
+        return $hasil;
     }
 }

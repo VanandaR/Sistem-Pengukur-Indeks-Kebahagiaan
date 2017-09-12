@@ -6,23 +6,29 @@
                 <div class="uk-width-1-1">
                     <div class="md-card">
                         <div class="md-card-content">
-                            <h3 class="heading_a">Date range</h3>
-                            <div class="uk-grid" data-uk-grid-margin>
-                                <div class="uk-width-large-1-2 uk-width-medium-1-1">
-                                    <div class="uk-input-group">
-                                        <span class="uk-input-group-addon"><i class="uk-input-group-icon uk-icon-calendar"></i></span>
-                                        <label for="uk_dp_start">Start Date</label>
-                                        <input class="md-input" type="text" id="uk_dp_start">
+                            <form method="GET">
+                                <h3 class="heading_a">Date range</h3>
+                                <div class="uk-grid" data-uk-grid-margin>
+                                    <div class="uk-width-large-2-5 uk-width-medium-1-1">
+                                        <div class="uk-input-group">
+                                            <span class="uk-input-group-addon"><i class="uk-input-group-icon uk-icon-calendar"></i></span>
+                                            <label for="uk_dp_start">Start Date</label>
+                                            <input class="md-input"  name="start" type="text" id="uk_dp_start" value=<?php echo e((isset($_GET['start']))?$_GET['start']:""); ?>>
+                                        </div>
                                     </div>
-                                </div>
-                                <div class="uk-width-large-1-2 uk-width-medium-1-1">
-                                    <div class="uk-input-group">
-                                        <span class="uk-input-group-addon"><i class="uk-input-group-icon uk-icon-calendar"></i></span>
-                                        <label for="uk_dp_end">End Date</label>
-                                        <input class="md-input" type="text" id="uk_dp_end">
+                                    <div class="uk-width-large-2-5 uk-width-medium-1-1">
+                                        <div class="uk-input-group">
+                                            <span class="uk-input-group-addon"><i class="uk-input-group-icon uk-icon-calendar"></i></span>
+                                            <label for="uk_dp_end">End Date</label>
+                                            <input class="md-input" name="end" type="text" id="uk_dp_end" value=<?php echo e((isset($_GET['end']))?$_GET['end']:""); ?>>
+                                        </div>
                                     </div>
+                                    <div class="uk-width-large-1-5 uk-width-medium-1-1  uk-text-center">
+                                        <button type="submit" id="search" class="md-btn md-btn-primary uk-width-medium-1-1 uk-margin-small-top">Search</button>
+                                    </div>
+
                                 </div>
-                            </div>
+                            </form>
                         </div>
                     </div>
                 </div>
@@ -39,7 +45,7 @@
             </div>
             <div class="md-card uk-margin-medium-bottom">
                 <div class="md-card-content">
-                    <table id="dt_individual_search" class="uk-table" cellspacing="0" width="100%">
+                    <table id="dt_default" class="uk-table" cellspacing="0" width="100%">
                         <thead>
                         <tr>
                             <th>Indeks</th>

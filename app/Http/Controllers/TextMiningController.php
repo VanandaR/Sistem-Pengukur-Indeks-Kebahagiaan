@@ -1,7 +1,5 @@
 <?php
-
 namespace App\Http\Controllers;
-
 use App\Classification;
 use App\Tweet;
 use Illuminate\Http\Request;
@@ -9,14 +7,12 @@ use Illuminate\Support\Facades\Redirect;
 use Phpml\Metric\ClassificationReport;
 use Sastrawi\Dictionary\ArrayDictionary;
 use Phpml\Classification\NaiveBayes;
-
 class TextMiningController extends Controller
 {
     public function __construct()
     {
         $this->middleware('auth');
     }
-
     public function frequencyngram($ngram){
         $y = new \Ngram\Tool\Ngram\Frequency();
         $z=$y->get($ngram);
@@ -25,26 +21,30 @@ class TextMiningController extends Controller
         for ($i=0;$i<count($z);$i++){
             $output[$i][0]=key($z);
             $output[$i][1]=$z[key($z)];
-
             next($z);
         }
         return $output;
     }
-    public function ngram($datatraining,$n=3){
+    public function ngram($datatraining,$n=4){
+//        $output=array();
+//        $i=0;
+//        foreach ($datatraining as $dt){
+//            $w = new \Ngram\Frequency\Letter($dt);
+//            $j=0;
+//            foreach ($w->extract($n) as $ye){
+//                $output[$i][$j]=$ye;
+//                $j++;
+//            }
+//            $i++;
+//        }
+//        return $output;
         $output=array();
         $i=0;
-
         foreach ($datatraining as $dt){
-            $w = new \Ngram\Frequency\Letter($dt);
-            $j=0;
-            foreach ($w->extract($n) as $ye){
-                $output[$i][$j]=$ye;
-                $j++;
-            }
+            $output[$i]= explode(' ', $dt);
             $i++;
         }
         return $output;
-
 
 //        foreach ($z as $ksks){
 //            echo $ksks."<br>";
@@ -110,14 +110,10 @@ class TextMiningController extends Controller
             if($output[$i]==''){
                 $output[$i]='   ';
             }
-
-                $i++;
+            $i++;
         }
         return $output;
     }
-
-
-
     public function preprocessing($datatraining){
         //tolowercase dan penghapusan delimiter
 //        $normalizedText = new \Sastrawi\Filter\TextNormalizer::normalizeText($);
@@ -172,19 +168,14 @@ class TextMiningController extends Controller
     }
     public function removeBukanKataDasar($text)
     {
-
         $kataDasar = $this->getKataDasar();
-
         $dictionary = new ArrayDictionary($kataDasar);
-
         $words = explode(' ', $text);
-
         foreach ($words as $i => $word) {
             if (!$dictionary->contains($word)) {
                 unset($words[$i]);
             }
         }
-
         return implode(' ', $words);
     }
     public function cekCorpus($datatraining){
@@ -195,9 +186,6 @@ class TextMiningController extends Controller
             $i++;
         }
         return $output;
+//        return $datatraining;
     }
-
-
-
-
 }

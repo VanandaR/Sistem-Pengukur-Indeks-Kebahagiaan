@@ -25,13 +25,15 @@ class StreamingController extends TextMiningController
     }
     public function index()
     {
-        $happiness=Happiness::all();
+        $start=(isset($_GET['start']))?$_GET['start']:"2017-01-01";
+        $end=(isset($_GET['end']))?$_GET['end']:"2100-12-31";
+        $happiness=Happiness::whereBetween('date',array($start,$end))->get();
         return view('streaming.visualisasi',['happiness'=>$happiness]);
     }
 
     public function search($query)
     {
-        $limit = (isset($_GET['jumlahtweet']))?$_GET['jumlahtweet']:100;
+        $limit = (isset($_GET['jumlahtweet']))?$_GET['jumlahtweet']:200;
         $max_id = null;
         $count=100;
         $contents = array();
@@ -39,7 +41,7 @@ class StreamingController extends TextMiningController
         for ($i = 0; $i < $limit; $i += $count) {
 
             $content = $connection->get('search/tweets', array(
-                "q" =>$query,
+                "q" =>$query." AND -filter:retweets AND -filter:replies",
                 "count"=>$limit,
                 'max_id'=>$max_id,
                 'lang'=>'id'));

@@ -15,6 +15,7 @@ class DataTrainingController extends TextMiningController
     public function index()
     {
         $datatraining=Tweet::where('status',1)->get();
+	
         $distribusisentimen=DB::table('classifications')->join('tweets', 'id_tweet', '=', 'tweets.id')
             ->select('manual_sentimen_label',DB::raw('count(*) as total'))
             ->where('status',1)
@@ -36,7 +37,9 @@ class DataTrainingController extends TextMiningController
 
         $b=array();
         foreach ($hasilngram as $hn){
-            $b=$b+$hn;
+            foreach ($hn as $ngram){
+                $b[]=$ngram;
+            }
         }
         $hasilfrequencyngram=$this->frequencyngram($b);
 
@@ -57,6 +60,7 @@ class DataTrainingController extends TextMiningController
     }
     function delete($id){
         Tweet::destroy($id);
+
         return Redirect::to('/datatraining/tabel');
     }
     public function manual(){

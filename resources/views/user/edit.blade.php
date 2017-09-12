@@ -41,11 +41,6 @@
                                 </div>
                             </div>
                         </div>
-
-
-                        <div class=" uk-text-right" style="border-top:1px solid rgba(0,0,0,.12); margin-top: 20px; padding-top:20px">
-                            <a href="/user/tabel" class="md-btn md-btn-flat uk-modal-close">Close</a><button type="submit" class="md-btn md-btn-flat md-btn-flat-primary">Save</button>
-                        </div>
                     </form>
                 </div>
             </div>

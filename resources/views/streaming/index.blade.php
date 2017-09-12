@@ -21,7 +21,7 @@
             <h4 class="heading_a uk-margin-bottom">Indeks Kebahagiaan Hari ini</h4>
             <div class="md-card uk-margin-medium-bottom">
                 <div class="md-card-content">
-                    <table id="dt_individual_search" class="uk-table" cellspacing="0" width="100%">
+                    <table id="dt_default" class="uk-table" cellspacing="0" width="100%">
                         <thead>
                         <tr>
                             <th>Tweet</th>

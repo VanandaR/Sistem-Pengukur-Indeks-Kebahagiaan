@@ -48,6 +48,7 @@ Route::get('/datatesting/edit/{id}', ['uses'=> 'DataTestingController@edit']);
 //Route::post('/datatesting/manual/label', 'DataTestingController@labelling');
 Route::get('/datatesting/klasifikasi', 'DataTestingController@klasifikasi');
 Route::get('/datatesting/indekskebahagiaan', 'DataTestingController@indekskebahagiaan');
+Route::get('/datatesting/wordclod', 'DataTestingController@wordcloud');
 
 Route::get('/streaming', 'StreamingController@index');
 Route::get('/streaming/klasifikasi', 'StreamingController@klasifikasihariini');

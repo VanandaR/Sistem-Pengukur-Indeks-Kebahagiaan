@@ -1,5 +1,5 @@
 @extends('.layouts.afterlogin')
-@section('judul','Text Preprocessing')
+@section('judul','Text Mining')
 @section('konten')
     <div id="page_content">
         <div id="page_content_inner">
@@ -12,8 +12,8 @@
                             <ul class="uk-tab" data-uk-tab="{connect:'#tabs_1'}">
                                 <li class="uk-active"><a href="#">Text Preprocessing</a></li>
                                 <li><a href="#">Text Tranformation</a></li>
-                                <li><a href="#">N-Gram</a></li>
-                                <li><a href="#">N-Gram Frequency</a></li>
+                                <li><a href="#">Unigram</a></li>
+                                <li><a href="#">Unigram Frequency</a></li>
                             </ul>
                             <ul id="tabs_1" class="uk-switcher uk-margin">
                                 <li>
@@ -88,7 +88,7 @@
                                         <tr>
                                             <th width="10%">No</th>
                                             <th>Hasil Stopword Removal</th>
-                                            <th>N-Gram</th>
+                                            <th>Unigram</th>
                                         </tr>
                                         </thead>
 
@@ -121,7 +121,7 @@
                                         <tr>
                                             <th width="10%">No</th>
                                             <th>Hasil Stopword Removal</th>
-                                            <th>N-Gram</th>
+                                            <th>Unigram</th>
                                         </tr>
                                         </thead>
 

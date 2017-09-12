@@ -109,7 +109,7 @@
                 </a>
                 <ul>
                     <li><a href="/datatraining/tabel">Tabel</a></li>
-                    <li><a href="/datatraining/preprocessing">Text Preprocessing</a></li>
+                    <li><a href="/datatraining/preprocessing">Text Mining</a></li>
                 </ul>
             </li>
             <li title="Data Testing">
@@ -119,7 +119,7 @@
                 </a>
                 <ul>
                     <li><a href="/datatesting/tabel">Tabel</a></li>
-                    <li><a href="/datatesting/preprocessing">Text Preprocessing</a></li>
+                    <li><a href="/datatesting/preprocessing">Text Mining</a></li>
                     <li><a href="/datatesting/klasifikasi">Klasifikasi</a></li>
                     <li><a href="/datatesting/indekskebahagiaan">Indeks Kebahagiaan</a></li>
                 </ul>
@@ -140,7 +140,7 @@
                 <li title="Streaming">
                     <a href="/streaming">
                         <span class="menu_icon"><i class="material-icons">&#xe85c;</i></span>
-                        <span class="menu_title">Streaming</span>
+                        <span class="menu_title">Indeks Kebahagiaan</span>
                     </a>
                 </li>
                 <li title="User">

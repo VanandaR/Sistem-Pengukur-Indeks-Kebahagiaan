@@ -45,7 +45,7 @@
 
 <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
 
-<!-- Salutation -->
+
 <?php if(! empty($salutation)): ?>
 <?php echo e($salutation); ?>
 
@@ -54,7 +54,7 @@ Regards,<br><?php echo e(config('app.name')); ?>
 
 <?php endif; ?>
 
-<!-- Subcopy -->
+
 <?php if(isset($actionText)): ?>
 <?php $__env->startComponent('mail::subcopy'); ?>
 If you’re having trouble clicking the "<?php echo e($actionText); ?>" button, copy and paste the URL below
